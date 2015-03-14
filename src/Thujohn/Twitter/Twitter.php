@@ -159,6 +159,11 @@ class Twitter extends tmhOAuth {
 
 	public function linkify($tweet)
 	{
+		if(is_object($tweet))
+		{
+			$tweet = $tweet->text;
+		}
+
 		$tweet = ' '.$tweet;
 
 		$patterns             = array();
@@ -1343,7 +1348,7 @@ class Twitter extends tmhOAuth {
 	{
 		if (
 			(!array_key_exists('list_id', $parameters) && !array_key_exists('slug', $parameters))
-			|| 
+			||
 			(!array_key_exists('user_id', $parameters) && !array_key_exists('screen_name', $parameters))
 		) {
 			throw new \Exception('Parameter required missing : list_id, slug, user_id or screen_name');
